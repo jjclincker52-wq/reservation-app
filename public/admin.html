@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Dashboard — ReserveHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="background-blob blob-1"></div>
+  <div class="background-blob blob-2"></div>
+
+  <!-- PASSWORD GATE (Login Modal) -->
+  <div id="admin-auth" class="auth-card card">
+    <h2>Owner Verification</h2>
+    <p class="subtitle">Enter the master password to access management tools.</p>
+    <form id="admin-login-form">
+      <div class="form-group">
+        <label>Master Password</label>
+        <input type="password" id="admin-pass" placeholder="••••••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary full-width">Unlock Dashboard</button>
+      <a href="index.html" class="back-link">← Return to Client Site</a>
+    </form>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD -->
+  <div id="admin-dashboard" class="hidden container">
+    <header class="navbar admin-nav">
+      <div class="logo">Reserve<span>Hub</span> <span class="badge">OWNER</span></div>
+      <div class="admin-actions">
+        <button id="btn-open-create" class="btn btn-primary">+ Add Reservation</button>
+        <button id="admin-logout-btn" class="btn btn-secondary">Lock Panel</button>
+      </div>
+    </header>
+
+    <!-- METRICS -->
+    <div class="stats-grid">
+      <div class="stat-card card">
+        <span class="stat-num" id="stat-total">0</span>
+        <span class="stat-label">Total Reservations</span>
+      </div>
+      <div class="stat-card card">
+        <span class="stat-num" id="stat-guests">0</span>
+        <span class="stat-label">Total Expected Guests</span>
+      </div>
+      <div class="stat-card card">
+        <span class="stat-num" id="stat-active">0</span>
+        <span class="stat-label">Upcoming Dates</span>
+      </div>
+    </div>
+
+    <!-- RESERVATION TABLE CARD -->
+    <div class="card admin-table-card">
+      <div class="table-header">
+        <h3>Master Reservation Log</h3>
+        <input type="text" id="search-input" placeholder="Search by customer, title, date..." />
+      </div>
+
+      <div class="table-wrapper">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Occasion / Title</th>
+              <th>Date & Time</th>
+              <th>Guests</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT / CREATE MODAL -->
+  <div id="crud-modal" class="modal-overlay hidden">
+    <div class="modal card">
+      <h3 id="modal-title">Edit Reservation</h3>
+      <form id="modal-form">
+        <input type="hidden" id="edit-id" />
+        <div class="form-group">
+          <label>Title / Occasion</label>
+          <input type="text" id="edit-title" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="edit-date" required />
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="edit-time" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Guests</label>
+          <input type="number" id="edit-guests" min="1" max="100" required />
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea id="edit-notes" rows="2"></textarea>
+        </div>
+        <div class="form-row" style="margin-top: 1rem;">
+          <button type="button" id="modal-cancel-btn" class="btn btn-secondary" style="flex:1;">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex:1;">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="admin.js"></script>
+</body>
+</html>

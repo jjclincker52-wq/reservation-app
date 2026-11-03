@@ -1,0 +1,227 @@
+:root {
+  --bg: #0b0f17;
+  --surface: rgba(22, 27, 34, 0.75);
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --text: #f3f4f6;
+  --text-muted: #9ca3af;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --card-radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Ambient Glows */
+.background-blob {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.15;
+}
+.blob-1 { background: #6366f1; top: -100px; left: -100px; }
+.blob-2 { background: #ec4899; bottom: -100px; right: -100px; }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--primary); }
+
+#nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Base Card & Glassmorphism */
+.card {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Forms and Typography */
+h2, h3 { font-weight: 700; letter-spacing: -0.5px; }
+.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; margin-bottom: 1.5rem; }
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+.form-row .form-group { flex: 1; }
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+input, textarea {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
+.btn-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+.btn-danger:hover { background: var(--danger); color: white; }
+.full-width { width: 100%; margin-top: 0.5rem; }
+
+/* Auth Layout */
+.auth-card {
+  max-width: 420px;
+  margin: 4rem auto;
+}
+
+.tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Dashboard Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 850px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* Reservations List */
+.reservations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.res-item {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.res-item:hover { transform: translateY(-2px); }
+
+.res-info h4 { font-size: 1.05rem; margin-bottom: 0.25rem; }
+.res-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 0.75rem; }
+.res-badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #1f2937;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  font-size: 0.9rem;
+  z-index: 100;
+  transition: opacity 0.3s ease;
+}
+
+.hidden { display: none !important; }
